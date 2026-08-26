@@ -425,10 +425,10 @@ body {
   .live-dot {
     width: 9px;
     height: 9px;
-    margin-right: 9px;
+    margin-right: 2px;
   }
 
   .status-separator {
-    margin: 0 10px;
+    margin: 0px;
   }
 }
