@@ -1,0 +1,123 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 4px;
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  background: #000;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+.app {
+  min-height: calc(100vh - 8px);
+  display: flex;
+  flex-direction: column;
+  padding: 28px 32px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.topbar h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+
+.prediction {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+.prediction-label,
+.rate-label,
+.distance-label,
+.time-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  color: #777;
+}
+
+.prediction-value {
+  font-size: 1rem;
+  color: #fff;
+}
+
+.hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 42px;
+  padding-bottom: 40px;
+}
+
+.rate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.rate-value {
+  font-size: clamp(5rem, 11vw, 10rem);
+  font-weight: 400;
+  letter-spacing: -0.07em;
+  line-height: 0.9;
+}
+
+.distance,
+.time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.distance-value {
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.time-value {
+  font-size: 3rem;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  color: #7e7e7e;
+}
+
+.live-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #ff0000;
+}
+
+.status-separator {
+  color: #333;
+} 
