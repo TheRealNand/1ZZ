@@ -1,315 +1,434 @@
+/* =========================================================
+   1ZZ — GLOBAL RESET
+   ========================================================= */
+
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html,
 body,
 #root {
-  margin: 0;
   width: 100%;
-  min-height: 100%;
-  background: #000000;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  color: #ffffff;
+  background: #000;
+  color: #fff;
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+  overflow: hidden;
 }
 
-button {
-  font-family: inherit;
-}
+
+/* =========================================================
+   APP
+   ========================================================= */
 
 .app {
   position: relative;
+
+  width: 100vw;
+  height: 100vh;
+
   min-height: 100vh;
+
+  background: #000;
+  color: #fff;
+
   overflow: hidden;
-  background: #000000;
-  padding: 54px 68px 34px;
 }
 
-/* =============================================
+
+/* =========================================================
    TOP BAR
-   ============================================= */
+   ========================================================= */
 
 .topbar {
+  position: absolute;
+
+  top: 7.2vh;
+  left: 5.7vw;
+  right: 5.7vw;
+
   display: flex;
-  justify-content: space-between;
   align-items: flex-start;
+  justify-content: space-between;
 }
 
 .topbar h1 {
   margin: 0;
-  font-size: 42px;
-  font-weight: 700;
-  letter-spacing: -2px;
+
+  color: #fff;
+
+  font-size: clamp(42px, 3.5vw, 60px);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.08em;
 }
+
+
+/* =========================================================
+   PREDICTION
+   ========================================================= */
 
 .prediction {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 14px;
+
+  text-align: right;
 }
 
 .prediction-label {
-  color: #777777;
-  font-size: 14px;
-  letter-spacing: 2px;
+  color: #777;
+
+  font-size: clamp(13px, 1vw, 17px);
+  font-weight: 400;
+
+  letter-spacing: 0.22em;
+  line-height: 1;
 }
 
 .prediction-value {
-  font-size: 20px;
+  margin-top: 18px;
+
+  color: #fff;
+
+  font-size: clamp(14px, 1vw, 18px);
+  font-weight: 500;
+
+  line-height: 1;
 }
 
-/* =============================================
+
+/* =========================================================
    HERO
-   ============================================= */
+   ========================================================= */
 
 .hero {
+  position: absolute;
+
+  top: 22.5vh;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 100%;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 58px;
+
+  text-align: center;
 }
+
+
+/* =========================================================
+   LIVE RATE
+   ========================================================= */
 
 .rate {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  text-align: center;
 }
 
 .rate-value {
-  font-size: clamp(90px, 10vw, 150px);
-  line-height: 0.95;
-  font-weight: 600;
-  letter-spacing: -7px;
+  color: #fff;
+
+  font-size: clamp(92px, 8vw, 140px);
+  font-weight: 800;
+
+  line-height: 0.9;
+  letter-spacing: -0.075em;
+
+  white-space: nowrap;
 }
 
 .rate-label {
-  margin-top: 20px;
-  color: #777777;
-  font-size: 14px;
-  letter-spacing: 3px;
+  margin-top: 28px;
+
+  color: #777;
+
+  font-size: clamp(13px, 1vw, 18px);
+  font-weight: 400;
+
+  letter-spacing: 0.28em;
+  line-height: 1;
 }
 
+
+/* =========================================================
+   METRICS
+   ========================================================= */
+
 .metrics {
-  position: relative;
-  z-index: 10;
+  position: absolute;
+
+  top: 39vh;
+  left: 50%;
+
+  transform: translateX(-50%);
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  margin-top: 68px;
+  width: 520px;
+  max-width: 80vw;
 }
+
+
+/* =========================================================
+   DISTANCE TO ₹100
+   ========================================================= */
 
 .distance,
 .time {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 180px;
+
+  width: 210px;
+
+  text-align: center;
 }
 
 .distance-value,
 .time-value {
-  font-size: 38px;
-  font-weight: 500;
+  color: #fff;
+
+  font-size: clamp(34px, 2.7vw, 48px);
+  font-weight: 400;
+
+  line-height: 1;
+  letter-spacing: -0.04em;
 }
 
 .distance-label,
 .time-label {
-  margin-top: 14px;
-  color: #777777;
-  font-size: 14px;
-  letter-spacing: 2px;
+  margin-top: 18px;
+
+  color: #777;
+
+  font-size: clamp(13px, 0.95vw, 16px);
+  font-weight: 400;
+
+  letter-spacing: 0.16em;
+  line-height: 1;
 }
+
+
+/* =========================================================
+   METRIC DIVIDER
+   ========================================================= */
 
 .metric-divider {
   width: 1px;
-  height: 80px;
-  margin: 0 42px;
-  background: #333333;
+  height: 78px;
+
+  background: #3a3a3a;
+
+  flex-shrink: 0;
 }
 
-/* =============================================
-   GRAPH
-   ============================================= */
+
+/* =========================================================
+   GRAPH — HIDDEN
+   ========================================================= */
+
+/*
+   The graph remains in App.jsx so we don't have to
+   destroy your existing logic.
+
+   Visually, however, it is completely removed.
+*/
 
 .chart-section {
-  position: absolute;
-
-  left: 68px;
-  right: 68px;
-  bottom: 58px;
-
-  height: 260px;
-
-  display: grid;
-  grid-template-columns: 30% 70%;
-
-  align-items: end;
+  display: none !important;
 }
 
-.chart-header {
-  position: relative;
 
-  left: auto;
-  top: auto;
-
-  height: 100%;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-
-  padding-top: 20px;
-
-  z-index: 5;
-}
-
-.chart-title {
-  font-size: 24px;
-  font-weight: 400;
-  letter-spacing: 0.5px;
-  color: #ffffff;
-}
-
-.range-controls {
-  display: flex;
-  gap: 10px;
-  margin-top: 18px;
-}
-
-.range-button {
-  padding: 8px 16px;
-
-  background: transparent;
-  color: #777777;
-
-  border: 1px solid #222222;
-  border-radius: 5px;
-
-  font-size: 13px;
-  cursor: pointer;
-
-  transition:
-    color 0.2s ease,
-    border-color 0.2s ease,
-    background 0.2s ease;
-}
-
-.range-button:hover {
-  color: #ffffff;
-  border-color: #444444;
-}
-
-.range-button.active {
-  color: #00ff66;
-  border-color: #00ff66;
-  background: rgba(0, 255, 102, 0.03);
-}
-
-/* =============================================
-   GRAPH CANVAS
-   ============================================= */
-
-.chart-wrapper {
-  position: relative;
-
-  width: 100%;
-  height: 230px;
-
-  overflow: hidden;
-}
-
-.chart {
-  display: block;
-
-  width: 100%;
-  height: 100%;
-}
-
-.chart-loading {
-  width: 100%;
-  height: 100%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  color: #555555;
-
-  font-size: 13px;
-  letter-spacing: 2px;
-}
-
-/* =============================================
-   STATUS
-   ============================================= */
+/* =========================================================
+   STATUS / LIVE CLOCK
+   ========================================================= */
 
 .status {
   position: absolute;
 
-  left: 68px;
-  bottom: 28px;
+  left: 5.7vw;
+  bottom: 4.7vh;
 
   display: flex;
   align-items: center;
-  gap: 10px;
 
-  color: #777777;
-  font-size: 14px;
-  letter-spacing: 1px;
+  color: #777;
+
+  font-size: clamp(13px, 0.95vw, 17px);
+  font-weight: 400;
+
+  letter-spacing: 0.08em;
+
+  white-space: nowrap;
 }
 
+
+/* =========================================================
+   LIVE DOT
+   ========================================================= */
+
 .live-dot {
-  width: 8px;
-  height: 8px;
+  width: 12px;
+  height: 12px;
+
+  margin-right: 12px;
+
+  background: #ff3030;
 
   border-radius: 50%;
 
-  /* LIVE = RED */
-  background: #ff3b30;
-
-  box-shadow: 0 0 8px rgba(255, 59, 48, 0.35);
+  flex-shrink: 0;
 }
+
+
+/* =========================================================
+   STATUS SEPARATOR
+   ========================================================= */
 
 .status-separator {
-  color: #444444;
+  margin: 0 14px;
+
+  color: #555;
 }
 
-/* =============================================
+
+/* =========================================================
    RESPONSIVE
-   ============================================= */
+   ========================================================= */
 
 @media (max-width: 900px) {
-  .app {
-    padding: 36px 30px 30px;
+
+  .topbar {
+    top: 6vh;
+    left: 6vw;
+    right: 6vw;
   }
 
-  .topbar h1 {
-    font-size: 34px;
+  .hero {
+    top: 24vh;
   }
 
   .rate-value {
-    font-size: clamp(64px, 14vw, 100px);
-    letter-spacing: -5px;
+    font-size: clamp(72px, 12vw, 110px);
+  }
+
+  .rate-label {
+    margin-top: 22px;
   }
 
   .metrics {
-    margin-top: 50px;
+    top: 42vh;
+    width: 460px;
   }
 
-  .chart-section {
-    left: 30px;
-    right: 30px;
-    bottom: 70px;
+  .distance,
+  .time {
+    width: 180px;
+  }
+
+  .metric-divider {
+    height: 65px;
   }
 
   .status {
-    left: 30px;
+    left: 6vw;
+    bottom: 5vh;
+  }
+}
+
+
+@media (max-width: 600px) {
+
+  .topbar {
+    top: 5vh;
+    left: 7vw;
+    right: 7vw;
+  }
+
+  .topbar h1 {
+    font-size: 38px;
+  }
+
+  .prediction-label {
+    font-size: 11px;
+  }
+
+  .prediction-value {
+    margin-top: 12px;
+    font-size: 13px;
+  }
+
+  .hero {
+    top: 24vh;
+  }
+
+  .rate-value {
+    font-size: clamp(60px, 16vw, 90px);
+  }
+
+  .rate-label {
+    margin-top: 18px;
+    font-size: 11px;
+  }
+
+  .metrics {
+    top: 43vh;
+    width: 90vw;
+  }
+
+  .distance,
+  .time {
+    width: 42vw;
+  }
+
+  .distance-value,
+  .time-value {
+    font-size: 30px;
+  }
+
+  .distance-label,
+  .time-label {
+    margin-top: 14px;
+    font-size: 10px;
+  }
+
+  .metric-divider {
+    height: 60px;
+  }
+
+  .status {
+    left: 7vw;
+    bottom: 4vh;
+    font-size: 12px;
+  }
+
+  .live-dot {
+    width: 9px;
+    height: 9px;
+    margin-right: 9px;
+  }
+
+  .status-separator {
+    margin: 0 10px;
   }
 }
