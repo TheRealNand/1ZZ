@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import { saveObservation, getObservations } from "./database.js";
 
 dotenv.config();
 
@@ -27,19 +28,40 @@ app.get("/api/rate", async (req, res) => {
 
     const data = await response.json();
 
+    const rate = data.rates.INR;
+    const timestamp = data.timestamp;
+
+    saveObservation(timestamp, rate);
+
     res.json({
       pair: "USD/INR",
-      rate: data.rates.INR,
+      rate,
       source: data.source,
       marketSession: data.market_session,
       dataUpdatedAt: data.data_updated_at,
-      timestamp: data.timestamp,
+      timestamp,
     });
   } catch (error) {
     console.error("FX API error:", error);
 
     res.status(500).json({
       error: "Unable to retrieve USD/INR data",
+    });
+  }
+});
+
+app.get("/api/history", (req, res) => {
+  try {
+    const observations = getObservations();
+
+    res.json({
+      observations,
+    });
+  } catch (error) {
+    console.error("History error:", error);
+
+    res.status(500).json({
+      error: "Unable to retrieve historical data",
     });
   }
 });
