@@ -7,6 +7,7 @@ function App() {
   const [range, setRange] = useState("1M");
   const [loadingHistory, setLoadingHistory] = useState(true);
   const [currentTime, setCurrentTime] = useState("");
+  const [currentDate, setCurrentDate] = useState(null);
 
   // ---------------------------------------------
   // LIVE RATE
@@ -53,7 +54,7 @@ function App() {
   }, []);
 
   // ---------------------------------------------
-  // IST CLOCK
+  // IST CLOCK + CURRENT DATE
   // ---------------------------------------------
 
   useEffect(() => {
@@ -66,6 +67,7 @@ function App() {
       });
 
       setCurrentTime(`${time} IST`);
+      setCurrentDate(now);
     };
 
     updateClock();
@@ -112,7 +114,11 @@ function App() {
   // ---------------------------------------------
 
   const prediction = useMemo(() => {
-    if (!history.length || typeof rate !== "number") {
+    if (
+      !history.length ||
+      typeof rate !== "number" ||
+      !currentDate
+    ) {
       return {
         targetDate: null,
         daysLeft: null,
@@ -210,21 +216,26 @@ function App() {
       daysRequired <= 0
     ) {
       return {
-        targetDate:
-          points[points.length - 1].date,
+        targetDate: currentDate,
         daysLeft: 0,
       };
     }
 
     // ---------------------------------------------
     // PREDICT TARGET DATE
+    //
+    // IMPORTANT:
+    // The regression uses historical data, whose
+    // latest point may be several days behind today.
+    //
+    // DAYS LEFT is the number of days required
+    // from TODAY, so WHEN must also be calculated
+    // from TODAY rather than the latest historical
+    // data point.
     // ---------------------------------------------
 
-    const latestDate =
-      points[points.length - 1].date;
-
     const targetDate = new Date(
-      latestDate.getTime() +
+      currentDate.getTime() +
         daysRequired * 86400000
     );
 
@@ -234,7 +245,7 @@ function App() {
       targetDate,
       daysLeft,
     };
-  }, [history, rate]);
+  }, [history, rate, currentDate]);
 
   // ---------------------------------------------
   // GRAPH GEOMETRY
